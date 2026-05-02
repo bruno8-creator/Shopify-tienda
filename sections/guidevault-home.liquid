@@ -7,24 +7,28 @@
 
 <section class="hero">
   <div class="hero-copy">
-    <p class="eyebrow">Digital guides for real life</p>
+    <p class="eyebrow">The digital guide library</p>
     <h1>GuideVault</h1>
     <p class="hero-text">
-      Premium PDF guides made to be read, used, and revisited. Clear advice,
-      visual structure, and practical steps without the noise.
+      A growing vault of practical PDF guides across life, money, habits,
+      family, career, wellness, and skills. Fast to read, easy to use, and made
+      for people who want clear next steps.
     </p>
     <div class="hero-actions">
       {% if featured_product != blank %}
-        <a class="button primary" href="{{ featured_product.url }}">Shop the guide</a>
+        <a class="button primary" href="{{ featured_product.url }}">Explore latest guide</a>
       {% else %}
         <a class="button primary" href="{{ routes.all_products_collection_url }}">Shop guides</a>
       {% endif %}
-      <a class="button secondary" href="#inside">See what is inside</a>
+      <a class="button secondary" href="#topics">Browse topics</a>
     </div>
   </div>
 
   <div class="hero-product" aria-label="Featured guide preview">
     <div class="product-orbit"></div>
+    <div class="topic-tile tile-career">Career</div>
+    <div class="topic-tile tile-money">Money</div>
+    <div class="topic-tile tile-habits">Habits</div>
     {% if featured_product.featured_image %}
       {{ featured_product.featured_image | image_url: width: 900 | image_tag: alt: featured_product.title, loading: 'eager' }}
     {% else %}
@@ -39,18 +43,52 @@
 
 <section class="trust-strip" aria-label="Store benefits">
   <span>Instant delivery</span>
-  <span>Practical checklists</span>
+  <span>Multi-topic library</span>
   <span>Mobile friendly PDFs</span>
   <span>Lifetime access</span>
 </section>
 
+<section class="section topic-section" id="topics">
+  <div class="section-heading">
+    <p class="eyebrow">Guide categories</p>
+    <h2>One store, many useful paths</h2>
+    <p>
+      GuideVault is built to expand into a full PDF library. Today's first
+      guide is one shelf in a wider collection of focused, practical resources.
+    </p>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-card accent-green">
+      <span>Life</span>
+      <h3>Everyday decisions</h3>
+      <p>Guides for home, routines, planning, and personal milestones.</p>
+    </div>
+    <div class="topic-card accent-blue">
+      <span>Money</span>
+      <h3>Simple finance</h3>
+      <p>Practical resources for budgeting, saving, and smarter choices.</p>
+    </div>
+    <div class="topic-card accent-gold">
+      <span>Skills</span>
+      <h3>Learn faster</h3>
+      <p>Focused PDFs for career growth, productivity, and new abilities.</p>
+    </div>
+    <div class="topic-card accent-coral">
+      <span>Wellness</span>
+      <h3>Better habits</h3>
+      <p>Clear steps for routines, mindset, energy, and day-to-day balance.</p>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="guides">
   <div class="section-heading">
-    <p class="eyebrow">Featured product</p>
-    <h2>Start with the fatherhood guide</h2>
+    <p class="eyebrow">Latest drop</p>
+    <h2>The first guide in the vault</h2>
     <p>
-      A clear, warm PDF for expecting and new dads who want practical direction
-      without feeling overwhelmed.
+      This is the first product available today. More guides can be added here
+      as the store expands into new topics.
     </p>
   </div>
 
@@ -72,18 +110,18 @@
       {% if featured_product != blank %}
         <h3>{{ featured_product.title }}</h3>
         <div class="product-description">
-          {{ featured_product.description | default: 'A practical guide for modern fathers, built around confidence, preparation, emotional presence, and everyday routines that actually help.' }}
+          {{ featured_product.description | default: 'A practical digital guide with clear sections, useful takeaways, and a format designed for quick reading.' }}
         </div>
       {% else %}
         <h3>Becoming a Great Dad</h3>
-        <p>A practical guide for modern fathers, built around confidence, preparation, emotional presence, and everyday routines that actually help.</p>
+        <p>A practical digital guide with clear sections, useful takeaways, and a format designed for quick reading.</p>
       {% endif %}
 
       <ul class="feature-list" aria-label="Guide highlights">
-        <li>Simple preparation steps before the baby arrives</li>
-        <li>Supportive communication habits for both parents</li>
-        <li>Checklists for routines, essentials, and first weeks</li>
-        <li>Readable PDF format for phone, tablet, or desktop</li>
+        <li>Practical PDF format designed for quick reading</li>
+        <li>Clear sections with useful takeaways and checklists</li>
+        <li>Instant digital access after purchase</li>
+        <li>Readable on phone, tablet, laptop, or desktop</li>
       </ul>
 
       <div class="purchase-row">
@@ -113,34 +151,34 @@
 
 <section class="section split" id="inside">
   <div>
-    <p class="eyebrow">Inside the guide</p>
-    <h2>Structured for busy new parents</h2>
+    <p class="eyebrow">How guides are built</p>
+    <h2>Designed to be useful quickly</h2>
     <p>
-      Each section is designed to turn uncertainty into small, doable actions.
-      No filler, no endless theory, just useful guidance.
+      Every GuideVault PDF should feel polished, focused, and immediately
+      usable, whatever the topic is.
     </p>
   </div>
 
   <div class="inside-grid">
     <div class="inside-card">
       <span>01</span>
-      <h3>Prepare</h3>
-      <p>Build a calmer plan for the final weeks before birth.</p>
+      <h3>Understand</h3>
+      <p>Get the core idea without digging through long, messy content.</p>
     </div>
     <div class="inside-card">
       <span>02</span>
-      <h3>Support</h3>
-      <p>Learn what practical and emotional support looks like daily.</p>
+      <h3>Apply</h3>
+      <p>Turn the topic into simple actions, checklists, and decisions.</p>
     </div>
     <div class="inside-card">
       <span>03</span>
-      <h3>Connect</h3>
-      <p>Create early bonding habits that feel natural and repeatable.</p>
+      <h3>Save</h3>
+      <p>Keep the PDF on your device and revisit it whenever it helps.</p>
     </div>
     <div class="inside-card">
       <span>04</span>
-      <h3>Reset</h3>
-      <p>Use simple routines when sleep, stress, and change pile up.</p>
+      <h3>Expand</h3>
+      <p>Build your own library as new GuideVault topics are released.</p>
     </div>
   </div>
 </section>
@@ -148,10 +186,10 @@
 <section class="section visual-band">
   <div>
     <p class="eyebrow">Built for digital reading</p>
-    <h2>PDF guides that feel premium</h2>
+    <h2>A premium home for practical PDFs</h2>
     <p>
-      GuideVault products are designed as polished digital resources: easy to
-      scan, easy to save, and simple to revisit when you need them most.
+      The store is ready to grow beyond one niche: new guides, new categories,
+      and a cleaner way to buy focused knowledge online.
     </p>
   </div>
   {% if featured_product != blank %}
