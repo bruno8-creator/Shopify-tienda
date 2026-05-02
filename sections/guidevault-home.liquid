@@ -1,0 +1,180 @@
+{% liquid
+  assign featured_product = section.settings.featured_product
+  if featured_product == blank
+    assign featured_product = all_products['becoming-a-great-dad']
+  endif
+%}
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Digital guides for real life</p>
+    <h1>GuideVault</h1>
+    <p class="hero-text">
+      Premium PDF guides made to be read, used, and revisited. Clear advice,
+      visual structure, and practical steps without the noise.
+    </p>
+    <div class="hero-actions">
+      {% if featured_product != blank %}
+        <a class="button primary" href="{{ featured_product.url }}">Shop the guide</a>
+      {% else %}
+        <a class="button primary" href="{{ routes.all_products_collection_url }}">Shop guides</a>
+      {% endif %}
+      <a class="button secondary" href="#inside">See what is inside</a>
+    </div>
+  </div>
+
+  <div class="hero-product" aria-label="Featured guide preview">
+    <div class="product-orbit"></div>
+    {% if featured_product.featured_image %}
+      {{ featured_product.featured_image | image_url: width: 900 | image_tag: alt: featured_product.title, loading: 'eager' }}
+    {% else %}
+      <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="Becoming a Great Dad PDF guide cover" loading="eager">
+    {% endif %}
+    <div class="hero-badge">
+      <strong>Instant PDF</strong>
+      <span>Read on any device</span>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="Store benefits">
+  <span>Instant delivery</span>
+  <span>Practical checklists</span>
+  <span>Mobile friendly PDFs</span>
+  <span>Lifetime access</span>
+</section>
+
+<section class="section" id="guides">
+  <div class="section-heading">
+    <p class="eyebrow">Featured product</p>
+    <h2>Start with the fatherhood guide</h2>
+    <p>
+      A clear, warm PDF for expecting and new dads who want practical direction
+      without feeling overwhelmed.
+    </p>
+  </div>
+
+  <article class="product-feature">
+    <div class="product-media">
+      {% if featured_product.featured_image %}
+        {{ featured_product.featured_image | image_url: width: 760 | image_tag: alt: featured_product.title, loading: 'lazy' }}
+      {% else %}
+        <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="Becoming a Great Dad guide cover" loading="lazy">
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <div class="product-meta">
+        <span>PDF guide</span>
+        <span>New release</span>
+      </div>
+
+      {% if featured_product != blank %}
+        <h3>{{ featured_product.title }}</h3>
+        <div class="product-description">
+          {{ featured_product.description | default: 'A practical guide for modern fathers, built around confidence, preparation, emotional presence, and everyday routines that actually help.' }}
+        </div>
+      {% else %}
+        <h3>Becoming a Great Dad</h3>
+        <p>A practical guide for modern fathers, built around confidence, preparation, emotional presence, and everyday routines that actually help.</p>
+      {% endif %}
+
+      <ul class="feature-list" aria-label="Guide highlights">
+        <li>Simple preparation steps before the baby arrives</li>
+        <li>Supportive communication habits for both parents</li>
+        <li>Checklists for routines, essentials, and first weeks</li>
+        <li>Readable PDF format for phone, tablet, or desktop</li>
+      </ul>
+
+      <div class="purchase-row">
+        <div>
+          {% if featured_product != blank %}
+            <span class="price">{{ featured_product.price | money }}</span>
+          {% else %}
+            <span class="price">$19</span>
+          {% endif %}
+          <span class="price-note">Instant digital download</span>
+        </div>
+
+        {% if featured_product.available and featured_product.selected_or_first_available_variant %}
+          {% form 'product', featured_product, class: 'product-form' %}
+            <input type="hidden" name="id" value="{{ featured_product.selected_or_first_available_variant.id }}">
+            <button class="button primary" type="submit">Add to cart</button>
+          {% endform %}
+        {% elsif featured_product != blank %}
+          <a class="button primary" href="{{ featured_product.url }}">View product</a>
+        {% else %}
+          <a class="button primary" href="{{ routes.all_products_collection_url }}">View guides</a>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="section split" id="inside">
+  <div>
+    <p class="eyebrow">Inside the guide</p>
+    <h2>Structured for busy new parents</h2>
+    <p>
+      Each section is designed to turn uncertainty into small, doable actions.
+      No filler, no endless theory, just useful guidance.
+    </p>
+  </div>
+
+  <div class="inside-grid">
+    <div class="inside-card">
+      <span>01</span>
+      <h3>Prepare</h3>
+      <p>Build a calmer plan for the final weeks before birth.</p>
+    </div>
+    <div class="inside-card">
+      <span>02</span>
+      <h3>Support</h3>
+      <p>Learn what practical and emotional support looks like daily.</p>
+    </div>
+    <div class="inside-card">
+      <span>03</span>
+      <h3>Connect</h3>
+      <p>Create early bonding habits that feel natural and repeatable.</p>
+    </div>
+    <div class="inside-card">
+      <span>04</span>
+      <h3>Reset</h3>
+      <p>Use simple routines when sleep, stress, and change pile up.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section visual-band">
+  <div>
+    <p class="eyebrow">Built for digital reading</p>
+    <h2>PDF guides that feel premium</h2>
+    <p>
+      GuideVault products are designed as polished digital resources: easy to
+      scan, easy to save, and simple to revisit when you need them most.
+    </p>
+  </div>
+  {% if featured_product != blank %}
+    <a class="button dark" href="{{ featured_product.url }}">Get the guide</a>
+  {% else %}
+    <a class="button dark" href="{{ routes.all_products_collection_url }}">Get the guide</a>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "GuideVault home",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "GuideVault home"
+    }
+  ]
+}
+{% endschema %}

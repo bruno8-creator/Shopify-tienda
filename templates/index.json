@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "guidevault-home",
+      "settings": {
+        "featured_product": "becoming-a-great-dad"
+      }
+    }
+  },
+  "order": ["main"]
+}

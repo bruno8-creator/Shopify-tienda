@@ -1,0 +1,13 @@
+[
+  {
+    "name": "GuideVault",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Brand tagline",
+        "default": "Premium PDF guides for real life"
+      }
+    ]
+  }
+]

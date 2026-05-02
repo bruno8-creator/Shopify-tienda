@@ -1,0 +1,34 @@
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">GuideVault</p>
+    <h1 class="collection-title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="product-description">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+
+  <div class="collection-grid">
+    {% for product in collection.products %}
+      <article class="guide-card">
+        <a href="{{ product.url }}">
+          {% if product.featured_image %}
+            {{ product.featured_image | image_url: width: 600 | image_tag: alt: product.title, loading: 'lazy' }}
+          {% else %}
+            <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="{{ product.title | escape }}">
+          {% endif %}
+          <h2>{{ product.title }}</h2>
+          <span>{{ product.price | money }}</span>
+        </a>
+      </article>
+    {% else %}
+      <p>No guides found yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": []
+}
+{% endschema %}

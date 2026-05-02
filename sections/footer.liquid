@@ -1,0 +1,17 @@
+<footer class="site-footer">
+  <div>
+    <a class="brand" href="{{ routes.root_url }}">
+      <span class="brand-mark">GV</span>
+      <span>{{ shop.name | default: 'GuideVault' }}</span>
+    </a>
+    <p>{{ settings.brand_tagline }}</p>
+  </div>
+  <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | default: 'GuideVault' }}. Digital guides delivered online.</p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+<header class="site-header">
+  <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+    <span class="brand-mark">GV</span>
+    <span>{{ shop.name | default: 'GuideVault' }}</span>
+  </a>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="{{ routes.root_url }}">Home</a>
+    <a href="{{ routes.all_products_collection_url }}">Guides</a>
+    <a href="{{ routes.cart_url }}">Cart</a>
+  </nav>
+
+  <a class="cart-link" href="{{ routes.cart_url }}" aria-label="Cart">
+    Cart
+    <span>{{ cart.item_count }}</span>
+  </a>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

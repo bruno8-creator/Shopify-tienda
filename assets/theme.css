@@ -1,5 +1,4 @@
 :root {
-  color-scheme: light;
   --ink: #151515;
   --muted: #61605b;
   --paper: #faf8f2;
@@ -28,14 +27,43 @@ body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(115deg, rgba(216, 159, 53, 0.16), transparent 34%),
+    linear-gradient(245deg, rgba(49, 95, 128, 0.12), transparent 38%);
+}
+
 button,
 a {
   font: inherit;
 }
 
+a {
+  color: inherit;
+}
+
 img {
   display: block;
   max-width: 100%;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-140%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .site-header {
@@ -78,39 +106,27 @@ img {
   gap: clamp(14px, 3vw, 32px);
 }
 
-.main-nav a {
+.main-nav a,
+.cart-link {
   color: var(--muted);
   font-size: 0.94rem;
   font-weight: 700;
   text-decoration: none;
 }
 
-.main-nav a:hover {
-  color: var(--green);
-}
-
-.icon-button {
-  position: relative;
-  display: inline-grid;
-  min-width: 44px;
-  height: 44px;
-  place-items: center;
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   color: var(--ink);
-  cursor: pointer;
 }
 
-.cart-icon {
-  font-size: 0.78rem;
-  font-weight: 800;
-}
-
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
+.cart-link span {
   display: grid;
   width: 22px;
   height: 22px;
@@ -119,7 +135,6 @@ img {
   background: var(--coral);
   color: #fff;
   font-size: 0.76rem;
-  font-weight: 800;
 }
 
 .hero {
@@ -150,8 +165,8 @@ p {
 
 h1 {
   margin-bottom: 20px;
-  font-size: clamp(4.4rem, 12vw, 10.5rem);
-  line-height: 0.82;
+  font-size: clamp(3.8rem, 11vw, 10.5rem);
+  line-height: 0.86;
   letter-spacing: 0;
 }
 
@@ -172,8 +187,9 @@ h3 {
 .split > div > p,
 .visual-band p,
 .product-info p,
+.product-description,
 .inside-card p,
-.faq p {
+.site-footer p {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.7;
@@ -227,8 +243,8 @@ h3 {
 }
 
 .button.dark {
-  background: var(--ink);
-  color: #fff;
+  background: #fff;
+  color: var(--ink);
 }
 
 .hero-product {
@@ -355,6 +371,10 @@ h3 {
   font-weight: 800;
 }
 
+.product-title {
+  font-size: clamp(2.3rem, 5vw, 5.2rem);
+}
+
 .feature-list {
   display: grid;
   gap: 12px;
@@ -386,6 +406,10 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.product-form {
+  margin: 0;
+}
+
 .price {
   display: block;
   font-size: 2.4rem;
@@ -405,13 +429,15 @@ h3 {
   background: #fff;
 }
 
-.inside-grid {
+.inside-grid,
+.collection-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
-.inside-card {
+.inside-card,
+.guide-card {
   min-height: 190px;
   padding: 24px;
   border: 1px solid var(--line);
@@ -424,6 +450,19 @@ h3 {
   margin-bottom: 26px;
   color: var(--coral);
   font-weight: 900;
+}
+
+.guide-card a {
+  display: grid;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.guide-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .visual-band {
@@ -447,145 +486,17 @@ h3 {
   max-width: 760px;
 }
 
-.faq {
-  padding-top: 50px;
-}
-
-.faq-list {
-  display: grid;
-  gap: 12px;
-}
-
-details {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-}
-
-summary {
-  cursor: pointer;
-  padding: 20px;
-  font-weight: 800;
-}
-
-details p {
-  padding: 0 20px 20px;
-}
-
-.cart-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: grid;
-  justify-items: end;
-  background: rgba(18, 18, 17, 0);
-  pointer-events: none;
-  transition: background 180ms ease;
-}
-
-.cart-drawer.is-open {
-  background: rgba(18, 18, 17, 0.42);
-  pointer-events: auto;
-}
-
-.cart-panel {
-  width: min(100vw, 420px);
-  height: 100%;
-  padding: 24px;
-  background: #fff;
-  box-shadow: -18px 0 70px rgba(20, 20, 18, 0.2);
-  transform: translateX(100%);
-  transition: transform 220ms ease;
-}
-
-.cart-drawer.is-open .cart-panel {
-  transform: translateX(0);
-}
-
-.cart-header,
-.cart-total,
-.cart-item {
+.site-footer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 14px;
-}
-
-.cart-header {
-  margin-bottom: 28px;
-}
-
-.close-cart {
-  font-weight: 900;
-}
-
-.cart-empty {
-  display: grid;
-  gap: 4px;
-  padding: 22px;
-  border-radius: 8px;
-  background: var(--paper);
-  color: var(--muted);
-}
-
-.cart-empty p {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 800;
-}
-
-.cart-item {
-  padding: 16px 0;
+  gap: 24px;
+  padding: 44px clamp(18px, 5vw, 72px);
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: #fff;
 }
 
-.cart-item img {
-  width: 56px;
-  height: 72px;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.cart-item div {
-  display: grid;
-  flex: 1;
-  gap: 4px;
-}
-
-.cart-item span {
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.cart-total {
-  margin: 26px 0;
-  font-size: 1.1rem;
-}
-
-.checkout-button {
-  width: 100%;
-}
-
-.toast {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 60;
-  padding: 14px 18px;
-  border-radius: 8px;
-  background: var(--ink);
-  color: #fff;
-  font-weight: 800;
-  box-shadow: 0 16px 50px rgba(18, 18, 17, 0.18);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 180ms ease, transform 180ms ease;
-}
-
-.toast.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.site-footer > p {
+  max-width: 420px;
 }
 
 @media (max-width: 900px) {
@@ -608,11 +519,13 @@ details p {
   }
 
   .trust-strip,
-  .inside-grid {
+  .inside-grid,
+  .collection-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .visual-band {
+  .visual-band,
+  .site-footer {
     align-items: flex-start;
     flex-direction: column;
   }
@@ -628,7 +541,7 @@ details p {
   }
 
   h1 {
-    font-size: clamp(3.8rem, 21vw, 5.8rem);
+    font-size: clamp(3.6rem, 19vw, 5.8rem);
   }
 
   .hero-product {
@@ -641,7 +554,8 @@ details p {
   }
 
   .trust-strip,
-  .inside-grid {
+  .inside-grid,
+  .collection-grid {
     grid-template-columns: 1fr;
   }
 
@@ -654,7 +568,8 @@ details p {
     flex-direction: column;
   }
 
-  .purchase-row .button {
+  .purchase-row .button,
+  .product-form {
     width: 100%;
   }
 }
