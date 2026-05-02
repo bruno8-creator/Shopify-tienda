@@ -243,6 +243,12 @@ h3 {
   color: var(--ink);
 }
 
+.button.compact {
+  min-height: 42px;
+  padding: 0 14px;
+  font-size: 0.9rem;
+}
+
 .button.dark {
   background: #fff;
   color: var(--ink);
@@ -742,6 +748,87 @@ h3 {
   object-fit: cover;
 }
 
+.product-library {
+  padding-top: clamp(22px, 4vw, 56px);
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.library-card {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 58px rgba(28, 28, 26, 0.07);
+}
+
+.library-media {
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(216, 159, 53, 0.26), transparent 28%),
+    radial-gradient(circle at 84% 80%, rgba(124, 107, 176, 0.18), transparent 30%),
+    #f5efe2;
+}
+
+.library-media img {
+  width: min(68%, 230px);
+  border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(28, 28, 26, 0.16);
+  transform: rotate(-1.5deg);
+}
+
+.library-info {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.library-info h3 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.library-info h3 a,
+.library-media {
+  text-decoration: none;
+}
+
+.library-info p {
+  min-height: 52px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.library-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.library-footer strong {
+  font-size: 1.25rem;
+}
+
+.empty-library {
+  grid-column: 1 / -1;
+  padding: 30px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
 .visual-band {
   display: flex;
   align-items: center;
@@ -798,7 +885,8 @@ h3 {
   .trust-strip,
   .inside-grid,
   .collection-grid,
-  .topic-grid {
+  .topic-grid,
+  .library-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -848,7 +936,8 @@ h3 {
   .trust-strip,
   .inside-grid,
   .collection-grid,
-  .topic-grid {
+  .topic-grid,
+  .library-grid {
     grid-template-columns: 1fr;
   }
 

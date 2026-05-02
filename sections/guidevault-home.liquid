@@ -170,6 +170,53 @@
   </article>
 </section>
 
+<section class="section product-library" id="library">
+  <div class="section-heading">
+    <p class="eyebrow">All guides</p>
+    <h2>The growing vault</h2>
+    <p>
+      Every published PDF product in your Shopify catalog appears here
+      automatically, so new guides can be added without changing the theme.
+    </p>
+  </div>
+
+  <div class="library-grid">
+    {% for product in collections.all.products limit: 12 %}
+      <article class="library-card">
+        <a class="library-media" href="{{ product.url }}" aria-label="View {{ product.title | escape }}">
+          {% if product.featured_image %}
+            {{ product.featured_image | image_url: width: 620 | image_tag: alt: product.title, loading: 'lazy' }}
+          {% else %}
+            <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy">
+          {% endif %}
+        </a>
+
+        <div class="library-info">
+          <div class="product-meta">
+            <span>PDF guide</span>
+            {% if product.available %}
+              <span>Available</span>
+            {% else %}
+              <span>Sold out</span>
+            {% endif %}
+          </div>
+          <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+          <p>{{ product.description | strip_html | truncate: 120 }}</p>
+          <div class="library-footer">
+            <strong>{{ product.price | money }}</strong>
+            <a class="button secondary compact" href="{{ product.url }}">View guide</a>
+          </div>
+        </div>
+      </article>
+    {% else %}
+      <div class="empty-library">
+        <h3>No guides are published yet</h3>
+        <p>Publish products to the Online Store channel and they will appear here.</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
 <section class="section split" id="inside">
   <div>
     <p class="eyebrow">How guides are built</p>
