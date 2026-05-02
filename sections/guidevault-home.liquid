@@ -94,16 +94,22 @@
 
   <article class="product-feature">
     <div class="product-media">
+      <div class="product-media-label">Latest PDF</div>
       {% if featured_product.featured_image %}
         {{ featured_product.featured_image | image_url: width: 760 | image_tag: alt: featured_product.title, loading: 'lazy' }}
       {% else %}
         <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="Becoming a Great Dad guide cover" loading="lazy">
       {% endif %}
+      <div class="product-preview-note">
+        <strong>Digital download</strong>
+        <span>PDF format</span>
+      </div>
     </div>
 
     <div class="product-info">
       <div class="product-meta">
         <span>PDF guide</span>
+        <span>Instant access</span>
         <span>New release</span>
       </div>
 
@@ -123,6 +129,21 @@
         <li>Instant digital access after purchase</li>
         <li>Readable on phone, tablet, laptop, or desktop</li>
       </ul>
+
+      <div class="product-stats" aria-label="Product benefits">
+        <div>
+          <strong>PDF</strong>
+          <span>Format</span>
+        </div>
+        <div>
+          <strong>24/7</strong>
+          <span>Access</span>
+        </div>
+        <div>
+          <strong>Any</strong>
+          <span>Device</span>
+        </div>
+      </div>
 
       <div class="purchase-row">
         <div>
