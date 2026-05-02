@@ -731,6 +731,40 @@ h3 {
   background: #fff;
 }
 
+.payment-badge {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.payment-badge.visa {
+  color: #1a4fb6;
+}
+
+.payment-badge.mastercard {
+  color: #d64224;
+}
+
+.payment-badge.amex {
+  color: #2466a8;
+}
+
+.payment-badge.paypal {
+  color: #0b5ea8;
+}
+
+.payment-badge.wallet {
+  color: var(--green-dark);
+}
+
 .split {
   display: grid;
   grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
