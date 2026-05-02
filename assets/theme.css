@@ -682,18 +682,6 @@ h3 {
   margin: 0;
 }
 
-.shopify-payment-button__button {
-  min-height: 48px;
-  border-radius: 8px;
-  font-weight: 800;
-  overflow: hidden;
-}
-
-.shopify-payment-button__more-options {
-  color: var(--muted);
-  font-size: 0.86rem;
-}
-
 .price {
   display: block;
   font-size: 2.4rem;

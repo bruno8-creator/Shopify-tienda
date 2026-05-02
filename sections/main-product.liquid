@@ -41,7 +41,6 @@
           <button class="button primary" type="submit" {% unless product.available %}disabled{% endunless %}>
             {% if product.available %}Add to cart{% else %}Sold out{% endif %}
           </button>
-          {{ form | payment_button }}
         {% endform %}
       </div>
 

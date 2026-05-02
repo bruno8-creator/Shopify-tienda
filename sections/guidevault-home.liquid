@@ -159,7 +159,6 @@
           {% form 'product', featured_product, class: 'product-form' %}
             <input type="hidden" name="id" value="{{ featured_product.selected_or_first_available_variant.id }}">
             <button class="button primary" type="submit">Add to cart</button>
-            {{ form | payment_button }}
           {% endform %}
         {% elsif featured_product != blank %}
           <a class="button primary" href="{{ featured_product.url }}">View product</a>
