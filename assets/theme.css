@@ -276,6 +276,78 @@ h3 {
   transform: rotate(-3deg);
 }
 
+.vault-visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(72vw, 410px);
+  min-height: 360px;
+  align-content: center;
+  gap: 12px;
+  padding: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 248, 232, 0.84)),
+    repeating-linear-gradient(90deg, rgba(47, 93, 80, 0.1) 0 1px, transparent 1px 18px);
+  box-shadow: var(--shadow);
+  transform: rotate(-2deg);
+}
+
+.vault-visual::before,
+.vault-visual::after {
+  content: "";
+  position: absolute;
+  border-radius: 8px;
+}
+
+.vault-visual::before {
+  inset: 22px auto auto 22px;
+  width: 72px;
+  height: 92px;
+  background: var(--green);
+  box-shadow:
+    92px 26px 0 var(--blue),
+    184px -6px 0 var(--gold),
+    260px 42px 0 var(--coral);
+  opacity: 0.2;
+}
+
+.vault-visual::after {
+  right: 30px;
+  bottom: 30px;
+  width: 132px;
+  height: 132px;
+  border: 22px solid rgba(47, 93, 80, 0.12);
+  border-radius: 50%;
+}
+
+.vault-visual span,
+.vault-visual strong,
+.vault-visual em {
+  position: relative;
+  z-index: 1;
+}
+
+.vault-visual span {
+  color: var(--coral);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.vault-visual strong {
+  max-width: 320px;
+  font-size: clamp(3.2rem, 8vw, 5.4rem);
+  line-height: 0.84;
+}
+
+.vault-visual em {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 800;
+}
+
 .hero-badge {
   position: absolute;
   right: 4%;

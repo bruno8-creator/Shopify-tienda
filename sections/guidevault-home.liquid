@@ -29,11 +29,11 @@
     <div class="topic-tile tile-career">Career</div>
     <div class="topic-tile tile-money">Money</div>
     <div class="topic-tile tile-habits">Habits</div>
-    {% if featured_product.featured_image %}
-      {{ featured_product.featured_image | image_url: width: 900 | image_tag: alt: featured_product.title, loading: 'eager' }}
-    {% else %}
-      <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="Becoming a Great Dad PDF guide cover" loading="eager">
-    {% endif %}
+    <div class="vault-visual" aria-hidden="true">
+      <span>PDF</span>
+      <strong>Guides</strong>
+      <em>Life / Money / Skills / Wellness</em>
+    </div>
     <div class="hero-badge">
       <strong>Instant PDF</strong>
       <span>Read on any device</span>
