@@ -751,7 +751,7 @@ h3 {
   position: relative;
   overflow: hidden;
   min-height: 190px;
-  padding: 24px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
@@ -775,7 +775,7 @@ h3 {
   font-weight: 900;
 }
 
-.guide-card a {
+.guide-card-media {
   display: grid;
   gap: 14px;
   text-decoration: none;
@@ -786,6 +786,26 @@ h3 {
   aspect-ratio: 4 / 5;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.guide-card-info {
+  display: grid;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.guide-card-info h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.guide-card-info h2 a {
+  text-decoration: none;
+}
+
+.guide-card-info > span {
+  font-size: 1.22rem;
+  font-weight: 900;
 }
 
 .product-library {
@@ -859,6 +879,21 @@ h3 {
 
 .library-footer strong {
   font-size: 1.25rem;
+}
+
+.card-product-form {
+  margin: 0;
+}
+
+.product-link {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.product-link:hover {
+  color: var(--green-dark);
 }
 
 .empty-library {

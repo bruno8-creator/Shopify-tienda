@@ -10,15 +10,25 @@
   <div class="collection-grid">
     {% for product in collection.products %}
       <article class="guide-card">
-        <a href="{{ product.url }}">
+        <a class="guide-card-media" href="{{ product.url }}">
           {% if product.featured_image %}
             {{ product.featured_image | image_url: width: 600 | image_tag: alt: product.title, loading: 'lazy' }}
           {% else %}
             <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="{{ product.title | escape }}">
           {% endif %}
-          <h2>{{ product.title }}</h2>
-          <span>{{ product.price | money }}</span>
         </a>
+        <div class="guide-card-info">
+          <h2><a href="{{ product.url }}">{{ product.title }}</a></h2>
+          <span>{{ product.price | money }}</span>
+          {% if product.available and product.selected_or_first_available_variant %}
+            {% form 'product', product, class: 'card-product-form' %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button class="button secondary compact" type="submit">Add to cart</button>
+            {% endform %}
+          {% else %}
+            <a class="button secondary compact" href="{{ product.url }}">View guide</a>
+          {% endif %}
+        </div>
       </article>
     {% else %}
       <p>No guides found yet.</p>

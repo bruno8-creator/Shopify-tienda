@@ -3,6 +3,9 @@
   if featured_product == blank
     assign featured_product = all_products['becoming-a-great-dad']
   endif
+  if featured_product == blank
+    assign featured_product = collections.all.products.first
+  endif
 %}
 
 <section class="hero">
@@ -150,7 +153,7 @@
           {% if featured_product != blank %}
             <span class="price">{{ featured_product.price | money }}</span>
           {% else %}
-            <span class="price">$19</span>
+            <span class="price">New guides soon</span>
           {% endif %}
           <span class="price-note">Instant digital download</span>
         </div>
@@ -212,8 +215,16 @@
           <p>{{ product.description | strip_html | truncate: 120 }}</p>
           <div class="library-footer">
             <strong>{{ product.price | money }}</strong>
-            <a class="button secondary compact" href="{{ product.url }}">View guide</a>
+            {% if product.available and product.selected_or_first_available_variant %}
+              {% form 'product', product, class: 'card-product-form' %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button class="button secondary compact" type="submit">Add to cart</button>
+              {% endform %}
+            {% else %}
+              <a class="button secondary compact" href="{{ product.url }}">View guide</a>
+            {% endif %}
           </div>
+          <a class="product-link" href="{{ product.url }}">Details and full description</a>
           {% render 'payment-icons' %}
         </div>
       </article>
