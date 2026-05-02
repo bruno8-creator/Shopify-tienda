@@ -159,12 +159,21 @@
           {% form 'product', featured_product, class: 'product-form' %}
             <input type="hidden" name="id" value="{{ featured_product.selected_or_first_available_variant.id }}">
             <button class="button primary" type="submit">Add to cart</button>
+            {{ form | payment_button }}
           {% endform %}
         {% elsif featured_product != blank %}
           <a class="button primary" href="{{ featured_product.url }}">View product</a>
         {% else %}
           <a class="button primary" href="{{ routes.all_products_collection_url }}">View guides</a>
         {% endif %}
+      </div>
+
+      <div class="payment-panel">
+        <div>
+          <strong>Secure payment</strong>
+          <span>Cards, wallets, and local methods supported by your Shopify checkout.</span>
+        </div>
+        {% render 'payment-icons' %}
       </div>
     </div>
   </article>
@@ -206,6 +215,7 @@
             <strong>{{ product.price | money }}</strong>
             <a class="button secondary compact" href="{{ product.url }}">View guide</a>
           </div>
+          {% render 'payment-icons' %}
         </div>
       </article>
     {% else %}

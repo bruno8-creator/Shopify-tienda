@@ -5,6 +5,7 @@
       <span>{{ shop.name | default: 'GuideVault' }}</span>
     </a>
     <p>{{ settings.brand_tagline }}</p>
+    {% render 'payment-icons' %}
   </div>
   <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | default: 'GuideVault' }}. Digital guides delivered online.</p>
 </footer>

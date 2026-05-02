@@ -1,0 +1,63 @@
+<section class="section cart-page">
+  <div class="section-heading">
+    <p class="eyebrow">Secure checkout</p>
+    <h1>Your cart</h1>
+    <p>Review your PDF guides and continue to Shopify's secure checkout.</p>
+  </div>
+
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart-form">
+      <div class="cart-layout">
+        <div class="cart-items">
+          {% for item in cart.items %}
+            <div class="cart-line">
+              <a class="cart-line-media" href="{{ item.url }}">
+                {% if item.image %}
+                  {{ item.image | image_url: width: 240 | image_tag: alt: item.product.title, loading: 'lazy' }}
+                {% else %}
+                  <img src="{{ 'becoming-a-great-dad.png' | asset_url }}" alt="{{ item.product.title | escape }}" loading="lazy">
+                {% endif %}
+              </a>
+              <div class="cart-line-info">
+                <a href="{{ item.url }}">{{ item.product.title }}</a>
+                <span>{{ item.final_line_price | money }}</span>
+                <label>
+                  Quantity
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                </label>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <aside class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong>{{ cart.total_price | money }}</strong>
+          </div>
+          <p>Taxes and any available payment options are calculated at checkout.</p>
+          <button class="button secondary" type="submit" name="update">Update cart</button>
+          <button class="button primary" type="submit" name="checkout">Checkout securely</button>
+          <div class="secure-note">
+            <strong>Protected payment</strong>
+            <span>Checkout is encrypted and processed by Shopify.</span>
+          </div>
+          {% render 'payment-icons' %}
+        </aside>
+      </div>
+    </form>
+  {% else %}
+    <div class="empty-library">
+      <h3>Your cart is empty</h3>
+      <p>Add a guide and come back here to complete checkout.</p>
+      <a class="button primary" href="{{ routes.all_products_collection_url }}">Browse guides</a>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": []
+}
+{% endschema %}

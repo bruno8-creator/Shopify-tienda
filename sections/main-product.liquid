@@ -12,9 +12,24 @@
       <div class="product-meta">
         <span>PDF guide</span>
         <span>Digital download</span>
+        <span>Secure checkout</span>
       </div>
       <h1 class="product-title">{{ product.title }}</h1>
       <div class="product-description">{{ product.description }}</div>
+      <div class="product-stats" aria-label="Payment and delivery benefits">
+        <div>
+          <strong>Secure</strong>
+          <span>Checkout</span>
+        </div>
+        <div>
+          <strong>Instant</strong>
+          <span>Access</span>
+        </div>
+        <div>
+          <strong>Digital</strong>
+          <span>PDF</span>
+        </div>
+      </div>
       <div class="purchase-row">
         <div>
           <span class="price">{{ product.price | money }}</span>
@@ -26,7 +41,16 @@
           <button class="button primary" type="submit" {% unless product.available %}disabled{% endunless %}>
             {% if product.available %}Add to cart{% else %}Sold out{% endif %}
           </button>
+          {{ form | payment_button }}
         {% endform %}
+      </div>
+
+      <div class="payment-panel">
+        <div>
+          <strong>Accepted payment methods</strong>
+          <span>Final available methods are shown securely at checkout.</span>
+        </div>
+        {% render 'payment-icons' %}
       </div>
     </div>
   </div>
