@@ -270,7 +270,7 @@ h3 {
 .hero-product img {
   position: relative;
   z-index: 1;
-  width: min(76vw, 430px);
+  width: min(62vw, 340px);
   border-radius: 12px;
   box-shadow: var(--shadow);
   transform: rotate(-3deg);
@@ -455,7 +455,7 @@ h3 {
 }
 
 .product-media img {
-  width: min(76%, 360px);
+  width: min(62%, 280px);
   border-radius: 10px;
   box-shadow: 0 20px 60px rgba(28, 28, 26, 0.2);
 }
